@@ -1,0 +1,12 @@
+[
+  {"event_id": "E001", "event_type": "click",    "user_id": "U100", "event_time": "2024-01-15 08:12:34", "duration_seconds": 2.1,  "page": "/home"},
+  {"event_id": "E002", "event_type": "view",     "user_id": "U101", "event_time": "2024-01-15 08:14:01", "duration_seconds": 45.3, "page": "/product/42"},
+  {"event_id": "E003", "event_type": "purchase", "user_id": "U100", "event_time": "2024-01-15 08:20:55", "duration_seconds": 120.0,"page": "/checkout"},
+  {"event_id": "E004", "event_type": "click",    "user_id": "U102", "event_time": "2024-01-15 09:05:11", "duration_seconds": 1.8,  "page": "/category/shoes"},
+  {"event_id": "E005", "event_type": "view",     "user_id": "U103", "event_time": "2024-01-15 09:30:22", "duration_seconds": 60.7, "page": "/product/17"},
+  {"event_id": "E006", "event_type": "view",     "user_id": "U102", "event_time": "2024-01-15 09:45:00", "duration_seconds": 30.2, "page": "/product/88"},
+  {"event_id": "E007", "event_type": "click",    "user_id": "U104", "event_time": "2024-01-15 10:01:45", "duration_seconds": 0.9,  "page": "/home"},
+  {"event_id": "E008", "event_type": "purchase", "user_id": "U103", "event_time": "2024-01-15 10:15:33", "duration_seconds": 95.4, "page": "/checkout"},
+  {"event_id": "E009", "event_type": "click",    "user_id": "U105", "event_time": "2024-01-15 11:00:00", "duration_seconds": 1.5,  "page": "/sale"},
+  {"event_id": "E010", "event_type": "view",     "user_id": "U105", "event_time": "2024-01-15 11:02:10", "duration_seconds": 52.0, "page": "/product/5"}
+]

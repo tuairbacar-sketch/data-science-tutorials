@@ -1,0 +1,11 @@
+customer_id,name,email,country,signup_date,annual_spend
+CUST101,Alice Johnson,alice@example.com,US,2022-03-15,4500.00
+CUST102,Bob Smith,bob@example.com,UK,2021-07-22,8200.50
+CUST103,Carlos Ruiz,carlos@example.com,MX,2023-01-10,1200.00
+CUST104,Diana Prince,diana@example.com,US,2020-11-05,15300.75
+CUST105,Ethan Brown,ethan@example.com,CA,2022-09-30,3400.00
+CUST106,Fatima Al-Zahra,fatima@example.com,AE,2023-06-01,22000.00
+CUST107,George Tanaka,george@example.com,JP,2021-04-18,6750.25
+CUST108,Hannah Lee,hannah@example.com,KR,2022-12-25,9100.00
+CUST109,Ivan Petrov,ivan@example.com,RU,2020-08-14,2300.80
+CUST110,Julia Rossi,julia@example.com,IT,2023-03-08,5600.00

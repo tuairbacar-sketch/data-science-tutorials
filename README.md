@@ -6,6 +6,27 @@ I hope you find them helpful. Happy learning and coding!
 
 
 
+## Azure Data Engineering Tutorials
+
+A complete collection covering all high-demand Azure Data Engineering topics. See the full collection → [`azure-data-engineering/`](azure-data-engineering/)
+
+| Topic | Description | Directory |
+|---|---|---|
+| 🛠 Azure Data Factory (ADF) | Pipelines, Copy Activity, Triggers, Linked Services | [azure-data-engineering/adf/](azure-data-engineering/adf/) |
+| ⚡ Azure Databricks | PySpark, Spark SQL, Delta Lake, Jobs | [azure-data-engineering/databricks/](azure-data-engineering/databricks/) |
+| 🧠 Synapse Analytics | Dedicated SQL Pool, Serverless SQL, Spark Pools | [azure-data-engineering/synapse-analytics/](azure-data-engineering/synapse-analytics/) |
+| 🗂 ADLS Gen2 | Hierarchical Namespace, ACLs, Medallion Architecture | [azure-data-engineering/adls-gen2/](azure-data-engineering/adls-gen2/) |
+| 🧪 Delta Lake | ACID Transactions, Time Travel, MERGE, Schema Evolution | [azure-data-engineering/delta-lake/](azure-data-engineering/delta-lake/) |
+| 🧾 SQL & PySpark | Joins, Window Functions, Pivot, Performance Tuning | [azure-data-engineering/sql-pyspark/](azure-data-engineering/sql-pyspark/) |
+| 🐍 Python for Azure | Azure SDK, Blob Storage, Key Vault, ADF REST API | [azure-data-engineering/python/](azure-data-engineering/python/) |
+| ❄️ Snowflake | Virtual Warehouses, Stages, COPY INTO, Snowpark | [azure-data-engineering/snowflake/](azure-data-engineering/snowflake/) |
+| 🧱 Microsoft Fabric | Lakehouse, OneLake, Data Factory in Fabric, Shortcuts | [azure-data-engineering/microsoft-fabric/](azure-data-engineering/microsoft-fabric/) |
+| 🔄 Scenario Questions | End-to-end pipeline design, interview Q&A | [azure-data-engineering/scenario-questions/](azure-data-engineering/scenario-questions/) |
+
+---
+
+## Other Tutorials
+
 | Article| Code|
 |----|------|
 |[Build a Data Science App with Python in 10 Easy Steps](https://www.kdnuggets.com/build-data-science-app-with-python-10-easy-steps)|[Code](https://github.com/balapriyac/data-science-tutorials/tree/main/data-science-app)|
