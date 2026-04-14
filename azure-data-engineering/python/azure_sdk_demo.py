@@ -110,8 +110,8 @@ def demo_key_vault() -> None:
         from azure.keyvault.secrets import SecretClient
 
         client = SecretClient(vault_url=vault_url, credential=DefaultAzureCredential())
-        secret = client.get_secret(secret_name)
-        _log(f"Retrieved secret '{secret_name}': {'*' * len(secret.value)}")
+        client.get_secret(secret_name)
+        _log(f"Retrieved secret '{secret_name}' successfully")
     else:
         _log(f"SecretClient(vault_url='{vault_url}').get_secret('{secret_name}')")
         _log("Secret value: *** (masked)")
