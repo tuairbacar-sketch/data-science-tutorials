@@ -61,6 +61,7 @@ def validate_df(df: pd.DataFrame) -> pd.DataFrame:
     print(f"Linhas recebidas: {len(df)}")
 
     if "id" in df.columns:
+        # Mantemos o último registro por id para priorizar a versão mais recente recebida.
         df = df.drop_duplicates(subset=["id"], keep="last")
 
     if "created_at" in df.columns:
@@ -90,8 +91,8 @@ def sync_etl(truncate=False):
             df_staging = validate_df(df)
 
             if truncate:
-                conn.execute(text("TRUNCATE TABLE staging_raw"))
-                print("🗑️ staging_raw limpa")
+                conn.execute(text("DELETE FROM staging_raw"))
+                print("🗑️ staging_raw limpa (DELETE)")
 
             df_staging.to_sql(
                 name="staging_raw",
