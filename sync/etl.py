@@ -43,11 +43,7 @@ def fetch_api_data():
     try:
         response = session.get(
             os.getenv("API_URL"),
-            headers={
-                "Authorization": (
-                    f"Token token={os.getenv('API_TOKEN') or os.getenv('APITOKEN', '')}"
-                )
-            },
+            headers={"Authorization": f"Token token={os.getenv('API_TOKEN', '')}"},
             timeout=10,
         )
         response.raise_for_status()
@@ -70,8 +66,7 @@ def validate_df(df: pd.DataFrame) -> pd.DataFrame:
     if "created_at" in df.columns:
         df["created_at"] = pd.to_datetime(df["created_at"], errors="coerce")
 
-    required_columns = ["id"]
-    df = df.dropna(subset=[column for column in required_columns if column in df.columns])
+    df = df.dropna(subset=["id"])
 
     df["payload"] = df.apply(lambda row: row.to_json(date_format="iso"), axis=1)
     df["hash_payload"] = df["payload"].apply(lambda payload: hashlib.sha256(payload.encode()).hexdigest())
@@ -123,16 +118,19 @@ def sync_etl(truncate=False):
             )
         except Exception as err:
             print(f"↩️ Erro: {err}. Rollback executado.")
-            with engine.begin() as conn_err:
-                conn_err.execute(
-                    text(
-                        """
-                        INSERT INTO sync_log (status, origem_dados, total_linhas, erro_msg, data_execucao)
-                        VALUES ('ERRO', :origem, :total, :erro, GETDATE())
-                        """
-                    ),
-                    {"origem": origem, "total": len(df), "erro": str(err)},
-                )
+            try:
+                with engine.begin() as conn_err:
+                    conn_err.execute(
+                        text(
+                            """
+                            INSERT INTO sync_log (status, origem_dados, total_linhas, erro_msg, data_execucao)
+                            VALUES ('ERRO', :origem, :total, :erro, GETDATE())
+                            """
+                        ),
+                        {"origem": origem, "total": len(df), "erro": str(err)},
+                    )
+            except Exception as log_err:
+                print(f"⚠️ Falha ao registrar erro em sync_log: {log_err}")
             raise
 
 

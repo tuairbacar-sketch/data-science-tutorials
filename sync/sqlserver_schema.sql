@@ -15,7 +15,8 @@ CREATE TABLE sync_log (
     origem_dados VARCHAR(20) NOT NULL,
     total_linhas INT NOT NULL,
     erro_msg NVARCHAR(MAX) NULL,
-    data_execucao DATETIME NOT NULL DEFAULT GETDATE()
+    data_execucao DATETIME NOT NULL DEFAULT GETDATE(),
+    CONSTRAINT CK_sync_log_status CHECK (status IN ('SUCESSO', 'ERRO'))
 );
 GO
 
