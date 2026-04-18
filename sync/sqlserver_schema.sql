@@ -20,6 +20,7 @@ CREATE TABLE sync_log (
 );
 GO
 
+-- Pré-requisito: a tabela dbo.tabela_producao deve existir antes de criar/executar a procedure.
 CREATE OR ALTER PROCEDURE dbo.MergeStagingToProducao
 AS
 BEGIN

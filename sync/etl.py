@@ -79,6 +79,7 @@ def sync_etl(truncate=False):
     engine = get_engine()
     origem = "N/A"
     df = pd.DataFrame()
+    df_staging = pd.DataFrame()
 
     with engine.begin() as conn:
         try:
@@ -104,7 +105,7 @@ def sync_etl(truncate=False):
 
             result = conn.execute(text("EXEC dbo.MergeStagingToProducao"))
             merge_result = result.scalar()
-            linhas_merge = int(merge_result) if merge_result is not None else 0
+            linhas_merge = int(merge_result or 0)
             print(f"✅ MERGE executado. {linhas_merge} linhas afetadas na produção")
 
             conn.execute(
@@ -127,7 +128,11 @@ def sync_etl(truncate=False):
                             VALUES ('ERRO', :origem, :total, :erro, GETDATE())
                             """
                         ),
-                        {"origem": origem, "total": len(df), "erro": str(err)},
+                        {
+                            "origem": origem,
+                            "total": len(df_staging) if not df_staging.empty else len(df),
+                            "erro": str(err),
+                        },
                     )
             except Exception as log_err:
                 print(f"⚠️ Falha ao registrar erro em sync_log: {log_err}")
