@@ -24,6 +24,8 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
+    DECLARE @merge_actions TABLE (action_name NVARCHAR(10));
+
     MERGE dbo.tabela_producao AS T
     USING staging_raw AS S
     ON T.id = S.id
@@ -34,6 +36,10 @@ BEGIN
             T.updated_at = GETDATE()
     WHEN NOT MATCHED THEN
         INSERT (id, payload, hash_payload)
-        VALUES (S.id, S.payload, S.hash_payload);
+        VALUES (S.id, S.payload, S.hash_payload)
+    OUTPUT $action INTO @merge_actions(action_name);
+
+    SELECT COUNT(1) AS linhas_afetadas
+    FROM @merge_actions;
 END
 GO

@@ -43,7 +43,11 @@ def fetch_api_data():
     try:
         response = session.get(
             os.getenv("API_URL"),
-            headers={"Authorization": f"Token token={os.getenv('APITOKEN')}"},
+            headers={
+                "Authorization": (
+                    f"Token token={os.getenv('API_TOKEN') or os.getenv('APITOKEN', '')}"
+                )
+            },
             timeout=10,
         )
         response.raise_for_status()
@@ -57,7 +61,7 @@ def fetch_api_data():
         return pd.DataFrame(data), "LOCAL"
 
 
-def validar_df(df: pd.DataFrame) -> pd.DataFrame:
+def validate_df(df: pd.DataFrame) -> pd.DataFrame:
     print(f"Linhas recebidas: {len(df)}")
 
     if "id" in df.columns:
@@ -66,8 +70,8 @@ def validar_df(df: pd.DataFrame) -> pd.DataFrame:
     if "created_at" in df.columns:
         df["created_at"] = pd.to_datetime(df["created_at"], errors="coerce")
 
-    colunas_obrigatorias = ["id"]
-    df = df.dropna(subset=[coluna for coluna in colunas_obrigatorias if coluna in df.columns])
+    required_columns = ["id"]
+    df = df.dropna(subset=[column for column in required_columns if column in df.columns])
 
     df["payload"] = df.apply(lambda row: row.to_json(date_format="iso"), axis=1)
     df["hash_payload"] = df["payload"].apply(lambda payload: hashlib.sha256(payload.encode()).hexdigest())
@@ -87,7 +91,7 @@ def sync_etl(truncate=False):
             if df.empty:
                 raise ValueError("DataFrame vazio. Nada para inserir.")
 
-            df_staging = validar_df(df)
+            df_staging = validate_df(df)
 
             if truncate:
                 conn.execute(text("TRUNCATE TABLE staging_raw"))
@@ -104,7 +108,8 @@ def sync_etl(truncate=False):
             print(f"✅ {len(df_staging)} linhas inseridas em staging_raw")
 
             result = conn.execute(text("EXEC dbo.MergeStagingToProducao"))
-            linhas_merge = result.rowcount
+            merge_result = result.scalar()
+            linhas_merge = int(merge_result) if merge_result is not None else 0
             print(f"✅ MERGE executado. {linhas_merge} linhas afetadas na produção")
 
             conn.execute(
