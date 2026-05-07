@@ -264,10 +264,12 @@ export default function PortfolioWebsite() {
               </p>
             </motion.div>
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-blue-600 hover:bg-blue-500 text-white text-lg px-8 py-6 rounded-xl font-semibold shadow-lg shadow-blue-500/25">
-                <Mail className="mr-2 h-5 w-5" />
-                alex@example.com
-              </Button>
+              <a href="mailto:alex@example.com">
+                <Button className="bg-blue-600 hover:bg-blue-500 text-white text-lg px-8 py-6 rounded-xl font-semibold shadow-lg shadow-blue-500/25">
+                  <Mail className="mr-2 h-5 w-5" aria-hidden="true" />
+                  alex@example.com
+                </Button>
+              </a>
               <Button className="border border-gray-600 bg-transparent hover:bg-gray-800 text-gray-200 text-lg px-8 py-6 rounded-xl font-semibold">
                 View LinkedIn
               </Button>
