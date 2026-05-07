@@ -270,9 +270,11 @@ export default function PortfolioWebsite() {
                   alex@example.com
                 </Button>
               </a>
-              <Button className="border border-gray-600 bg-transparent hover:bg-gray-800 text-gray-200 text-lg px-8 py-6 rounded-xl font-semibold">
-                View LinkedIn
-              </Button>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <Button className="border border-gray-600 bg-transparent hover:bg-gray-800 text-gray-200 text-lg px-8 py-6 rounded-xl font-semibold">
+                  View LinkedIn
+                </Button>
+              </a>
             </motion.div>
           </motion.div>
         </div>
